@@ -1,4 +1,6 @@
-import QtQuick 2.15
+import QtQuick
+import QtQuick3D
+import "Stuff" as Stuff
 
 Item {
     Text {
@@ -23,11 +25,29 @@ Item {
         }
     }
 
-    Rectangle {
-        color: "red"
-        width: 300
-        height: 300
-        anchors.centerIn: parent
-        NumberAnimation on rotation { from: 0; to: 360; duration: 5000; loops: -1 }
+    // Rectangle {
+    //     color: "red"
+    //     width: 300
+    //     height: 300
+    //     anchors.centerIn: parent
+    //     NumberAnimation on rotation { from: 0; to: 360; duration: 5000; loops: -1 }
+    // }
+
+    View3D {
+        anchors.fill: parent
+
+        PerspectiveCamera {
+            z: 600
+        }
+
+        DirectionalLight {
+        }
+
+        Model {
+            source: "#Cube"
+            eulerRotation.x: 30
+            materials: Stuff.MyMaterial {
+            }
+        }
     }
 }
