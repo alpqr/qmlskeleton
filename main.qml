@@ -1,38 +1,7 @@
 import QtQuick
 import QtQuick3D
-import "Stuff" as Stuff
 
 Item {
-    Text {
-        color: "#ffffff"
-        style: Text.Outline
-        styleColor: "#606060"
-        font.pixelSize: 28
-        property int api: GraphicsInfo.api
-        text: {
-            if (GraphicsInfo.api === GraphicsInfo.OpenGLRhi)
-                "OpenGL on QRhi";
-            else if (GraphicsInfo.api === GraphicsInfo.Direct3D11Rhi)
-                "D3D11 on QRhi";
-            else if (GraphicsInfo.api === GraphicsInfo.VulkanRhi)
-                "Vulkan on QRhi";
-            else if (GraphicsInfo.api === GraphicsInfo.MetalRhi)
-                "Metal on QRhi";
-            else if (GraphicsInfo.api === GraphicsInfo.Null)
-                "Null on QRhi";
-            else
-                "Unknown API";
-        }
-    }
-
-    // Rectangle {
-    //     color: "red"
-    //     width: 300
-    //     height: 300
-    //     anchors.centerIn: parent
-    //     NumberAnimation on rotation { from: 0; to: 360; duration: 5000; loops: -1 }
-    // }
-
     View3D {
         anchors.fill: parent
 
@@ -46,8 +15,7 @@ Item {
         Model {
             source: "#Cube"
             eulerRotation.x: 30
-            materials: Stuff.MyMaterial {
-            }
+            materials: PrincipledMaterial { }
         }
     }
 }
